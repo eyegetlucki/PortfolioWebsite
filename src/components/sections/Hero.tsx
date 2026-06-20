@@ -87,7 +87,7 @@ export function Hero() {
             className="text-lg md:text-2xl font-medium leading-relaxed mb-10 max-w-2xl"
             style={{ color: '#94a3b8' }}
           >
-            AI-Native Developer · LLM Integration · Agentic Pipelines
+            AI-Native Developer · LLM Integration · RAG & Agentic Pipelines
             <br />
             <span style={{ color: '#475569' }}>Unreal Engine 5 · Full-Stack</span>
           </motion.h2>
