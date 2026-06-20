@@ -100,6 +100,11 @@ export function Hero() {
               </a>
             </MagneticButton>
             <MagneticButton>
+              <a href="#about" className="btn-secondary">
+                About Me
+              </a>
+            </MagneticButton>
+            <MagneticButton>
               <a href="#contact" className="btn-secondary">
                 Get In Touch
               </a>
@@ -109,7 +114,7 @@ export function Hero() {
 
         {/* Scroll indicator */}
         <motion.div
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          className="flex flex-col items-center gap-2 mt-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4, duration: 0.6 }}
