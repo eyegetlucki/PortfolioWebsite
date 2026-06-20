@@ -58,13 +58,13 @@ export function About() {
           </h2>
           <div className="space-y-4 text-base leading-relaxed" style={{ color: '#94a3b8' }}>
             <p>
-              I'm a self-taught AI developer and solo builder. I build systems that didn't exist before — RAG pipelines, LLM integrations, agentic workflows, and full-stack apps that actually ship.
+              I've been skateboarding since I was 3. That's not a fun fact — it's actually how I think about everything. Landing a trick takes hundreds of slams before it clicks, and once it does, you're already eyeing the next one. That loop of failing, adjusting, and pushing through until something works is baked into how I learn anything.
             </p>
             <p>
-              Most recently I built SharpIQ — a production RAG pipeline that ingests NBA/MLB player data nightly, enriches it with fatigue scores, travel context, and matchup signals, embeds it into a vector database, and uses Claude to reason over retrieved context and return structured, sourced prop analysis. Every output cites its evidence. Nothing hallucinated.
+              That's how I got into software. Self-taught, no bootcamp, just picking something I wanted to build and grinding until I understood it. Right now that's AI systems — I built SharpIQ because I wanted to know why a player was actually tired, so I made a pipeline that tracks their flight miles, timezone shifts, and rest days, feeds it into a vector database, and lets Claude reason over it. Every answer cites its sources. Nothing made up.
             </p>
             <p>
-              I also wired Claude as a live AI agent into the Unreal Engine 5 editor via a custom MCP bridge — 28 real-time tools that let an LLM read and write game world state directly. The kind of thing that shouldn't work, and then it does.
+              I also wired Claude directly into the Unreal Engine 5 editor through a custom MCP bridge — 28 live tools that let an LLM read and write game world state in real time. It probably shouldn't work. It does.
             </p>
           </div>
         </AnimatedSection>
