@@ -69,8 +69,25 @@ export function About() {
           </div>
         </AnimatedSection>
 
-        {/* Right — stat cards with animated counters */}
+        {/* Right — video + stat cards */}
         <AnimatedSection direction="right" delay={0.15}>
+          <div
+            className="rounded-xl overflow-hidden mb-4"
+            style={{ border: '1px solid #1e1e30' }}
+          >
+            <video
+              src="/laitrell.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full block"
+              style={{ objectFit: 'cover', maxHeight: '280px' }}
+            />
+            <p className="text-xs text-center py-2" style={{ background: '#12121a', color: '#334155' }}>
+              when I'm not shipping code
+            </p>
+          </div>
           <div className="grid grid-cols-2 gap-4">
             {stats.map(stat => (
               <div
