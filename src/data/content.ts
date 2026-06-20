@@ -73,7 +73,11 @@ export const skillGroups: SkillGroup[] = [
     category: 'AI / LLM',
     skills: [
       { name: 'Claude API', icon: '🤖' },
-      { name: 'MCP Protocol', icon: '🔗' },
+      { name: 'RAG / Vector Search', icon: '🔍' },
+      { name: 'LangChain', icon: '🔗' },
+      { name: 'OpenAI Embeddings', icon: '🧬' },
+      { name: 'pgvector', icon: '🗄️' },
+      { name: 'MCP Protocol', icon: '🔌' },
       { name: 'Agentic Pipelines', icon: '⚙️' },
       { name: 'LLM Integration', icon: '🧠' },
       { name: 'Prompt Engineering', icon: '📝' },
@@ -92,10 +96,13 @@ export const skillGroups: SkillGroup[] = [
   {
     category: 'Full-Stack',
     skills: [
+      { name: 'Python', icon: '🐍' },
+      { name: 'FastAPI', icon: '⚡' },
       { name: 'React', icon: '⚛️' },
+      { name: 'Next.js', icon: '▲' },
       { name: 'TypeScript', icon: '🔷' },
       { name: 'Node.js', icon: '🟩' },
-      { name: 'Vite', icon: '⚡' },
+      { name: 'Framer Motion', icon: '🎞️' },
       { name: 'Socket.io', icon: '🔌' },
       { name: 'PostgreSQL', icon: '🐘' },
       { name: 'Supabase', icon: '🟢' },
@@ -104,8 +111,12 @@ export const skillGroups: SkillGroup[] = [
   {
     category: 'Infra / Auth',
     skills: [
+      { name: 'Railway', icon: '🚂' },
       { name: 'Vercel', icon: '🚀' },
+      { name: 'Cron / ETL Pipelines', icon: '⏱️' },
+      { name: 'REST APIs', icon: '🌐' },
       { name: 'Stripe', icon: '💳' },
+      { name: 'Clerk', icon: '🔐' },
       { name: 'JWT', icon: '🔑' },
       { name: 'OAuth 2.0', icon: '🔐' },
       { name: 'Steam API', icon: '🎯' },
