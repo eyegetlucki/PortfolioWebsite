@@ -4,7 +4,7 @@ import { AnimatedSection } from '../ui/AnimatedSection'
 import { GradientText } from '../ui/GradientText'
 
 const stats = [
-  { value: '2', numeric: 2, label: 'Projects — Shipped & In Progress' },
+  { value: '3', numeric: 3, label: 'Projects Shipped to Production' },
   { value: '28', numeric: 28, label: 'Live UE5 Editor Tools via MCP' },
   { value: 'Solo', numeric: null, label: 'End-to-End Builds' },
   { value: 'Remote', numeric: null, label: 'Fairfax, VA' },
@@ -58,13 +58,13 @@ export function About() {
           </h2>
           <div className="space-y-4 text-base leading-relaxed" style={{ color: '#94a3b8' }}>
             <p>
-              I'm a self-taught AI developer and solo game builder. I build systems that didn't exist before — LLM integrations, agentic workflows, and full-stack apps that actually ship.
+              I'm a self-taught AI developer and solo builder. I build systems that didn't exist before — RAG pipelines, LLM integrations, agentic workflows, and full-stack apps that actually ship.
             </p>
             <p>
-              Most recently I wired Claude as a live AI agent into the Unreal Engine 5 editor via a custom MCP bridge — 28 real-time tools that let an LLM read and write game world state directly. It's the kind of thing that shouldn't work, and then it does.
+              Most recently I built SharpIQ — a production RAG pipeline that ingests NBA/MLB player data nightly, enriches it with fatigue scores, travel context, and matchup signals, embeds it into a vector database, and uses Claude to reason over retrieved context and return structured, sourced prop analysis. Every output cites its evidence. Nothing hallucinated.
             </p>
             <p>
-              Before that I shipped a full-stack multiplayer trivia game solo — React, Node.js, Socket.io, Supabase, and Stripe, from idea to production. Every line, every screen, every infrastructure decision: me.
+              I also wired Claude as a live AI agent into the Unreal Engine 5 editor via a custom MCP bridge — 28 real-time tools that let an LLM read and write game world state directly. The kind of thing that shouldn't work, and then it does.
             </p>
           </div>
         </AnimatedSection>
