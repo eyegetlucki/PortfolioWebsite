@@ -16,14 +16,168 @@ const ExternalIcon = () => (
   </svg>
 )
 
-interface ProjectCardProps {
-  project: Project
+function hexToRgb(hex: string): string {
+  const h = hex.replace('#', '')
+  const r = parseInt(h.substring(0, 2), 16)
+  const g = parseInt(h.substring(2, 4), 16)
+  const b = parseInt(h.substring(4, 6), 16)
+  return `${r},${g},${b}`
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
+interface ProjectCardProps {
+  project: Project
+  featured?: boolean
+}
+
+export function ProjectCard({ project, featured = false }: ProjectCardProps) {
   const [hovered, setHovered] = useState(false)
   const accent = project.accentColor
-  const accentRgb = accent === '#22d3ee' ? '34,211,238' : '139,92,246'
+  const accentRgb = hexToRgb(accent)
+
+  if (featured) {
+    return (
+      <motion.div
+        className="relative rounded-xl overflow-hidden"
+        style={{
+          background: '#12121a',
+          border: `1px solid ${hovered ? `rgba(${accentRgb},0.4)` : '#1e1e30'}`,
+          boxShadow: hovered
+            ? `0 0 0 0px transparent, 0 16px 64px rgba(${accentRgb},0.14)`
+            : '0 4px 32px rgba(0,0,0,0.25)',
+          transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
+        }}
+        onHoverStart={() => setHovered(true)}
+        onHoverEnd={() => setHovered(false)}
+      >
+        {/* Accent top edge */}
+        <div
+          className="absolute top-0 left-0 right-0 h-px"
+          style={{
+            background: `linear-gradient(90deg, transparent, rgba(${accentRgb},${hovered ? '0.9' : '0.4'}), transparent)`,
+            transition: 'background 0.3s ease',
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Diagonal sweep */}
+        <motion.div
+          className="pointer-events-none absolute inset-0"
+          initial={{ x: '-100%', opacity: 0 }}
+          animate={hovered ? { x: '200%', opacity: 1 } : { x: '-100%', opacity: 0 }}
+          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          style={{
+            background: `linear-gradient(105deg, transparent 40%, rgba(${accentRgb},0.06) 50%, rgba(${accentRgb},0.03) 55%, transparent 65%)`,
+            width: '60%',
+          }}
+          aria-hidden="true"
+        />
+
+        <div className="p-7 md:p-9">
+          {/* Header row */}
+          <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
+            <div>
+              <div className="flex items-center gap-3 mb-1">
+                <h3 className="font-display text-2xl md:text-3xl font-bold" style={{ color: '#f1f5f9' }}>
+                  {project.title}
+                </h3>
+                <span
+                  className="flex-shrink-0 text-xs font-semibold px-2.5 py-1 rounded-full uppercase tracking-wide"
+                  style={{ background: `rgba(${accentRgb},0.10)`, color: accent, border: `1px solid ${accent}40` }}
+                >
+                  ✓ Shipped
+                </span>
+              </div>
+              {project.tagline && (
+                <p className="text-sm font-medium" style={{ color: `rgba(${accentRgb},0.85)` }}>
+                  {project.tagline}
+                </p>
+              )}
+            </div>
+            <div className="flex gap-3 flex-shrink-0">
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors duration-150"
+                style={{ color: '#94a3b8' }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#f1f5f9' }}
+                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#94a3b8' }}
+              >
+                <GitHubIcon /> GitHub
+              </a>
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold transition-opacity duration-150"
+                  style={{ color: accent }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = '0.7' }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = '1' }}
+                >
+                  <ExternalIcon /> Live
+                </a>
+              )}
+            </div>
+          </div>
+
+          {/* Description */}
+          <p className="text-sm mb-1" style={{ color: '#94a3b8' }}>{project.description}</p>
+          <p className="text-xs leading-relaxed mb-6" style={{ color: '#475569' }}>{project.longDescription}</p>
+
+          {/* Highlight callout */}
+          <div
+            className="text-xs font-medium px-3 py-2 rounded-lg mb-7 inline-block"
+            style={{
+              background: `rgba(${accentRgb},0.07)`,
+              border: `1px solid ${accent}30`,
+              color: accent,
+            }}
+          >
+            ✦ {project.highlight}
+          </div>
+
+          {/* Key systems grid */}
+          {project.systems && project.systems.length > 0 && (
+            <div className="mb-7">
+              <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: '#334155' }}>
+                Key Systems
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {project.systems.map(sys => (
+                  <div
+                    key={sys.label}
+                    className="rounded-lg px-4 py-3"
+                    style={{ background: '#0e0e18', border: '1px solid #1a1a2e' }}
+                  >
+                    <p className="text-xs font-semibold mb-1" style={{ color: accent }}>
+                      {sys.label}
+                    </p>
+                    <p className="text-xs leading-relaxed" style={{ color: '#475569' }}>
+                      {sys.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Stack tags */}
+          <div className="flex flex-wrap gap-1.5 pt-5" style={{ borderTop: '1px solid #1e1e30' }}>
+            {project.stack.map(tag => (
+              <span
+                key={tag}
+                className="text-xs px-2 py-1 rounded"
+                style={{ background: '#1a1a28', border: '1px solid #1e1e30', color: '#64748b' }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    )
+  }
 
   return (
     <motion.div

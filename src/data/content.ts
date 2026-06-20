@@ -2,6 +2,46 @@ import type { Project, SkillGroup } from '../types'
 
 export const projects: Project[] = [
   {
+    id: 'sharpiq',
+    title: 'SharpIQ',
+    tagline: 'AI-powered NBA & MLB prop betting analysis platform',
+    status: 'shipped',
+    description: 'Production RAG pipeline for sports analytics — not a chatbot, not a wrapper.',
+    longDescription:
+      'Nightly ETL ingests NBA/MLB player data, enriches it with composite fatigue scores (rolling minutes, travel miles, timezone shift, rest days), matchup signals, park factors, and game-time weather, then embeds it as 1536-dim vectors into Supabase pgvector. At inference time, Claude reasons over semantically retrieved context and returns structured JSON with confidence scores and cited sources. Every output is grounded — nothing hallucinated.',
+    systems: [
+      {
+        label: 'RAG Pipeline',
+        detail: 'LangChain orchestration · OpenAI text-embedding-3-small (1536-dim) · Supabase pgvector semantic retrieval · Claude structured JSON output with cited sources',
+      },
+      {
+        label: 'Enrichment Layer',
+        detail: 'Composite fatigue score (rolling mins + travel miles + timezone shift + rest days) · Haversine travel distance · back-to-back detection · opponent defensive rating & pace · ballpark park factors · game-time wind via NWS · batter splits vs LHP/RHP',
+      },
+      {
+        label: 'Multi-source Ingest',
+        detail: 'nba_api · statsapi (MLB) · The Odds API · ESPN public API · National Weather Service — nightly cron on Railway keeps embeddings fresh',
+      },
+      {
+        label: 'FastAPI Backend',
+        detail: 'Sport-aware /analyze endpoint · player search · props feed · prediction logging · auto-settlement cron · in-memory cache layer (1–12h TTLs)',
+      },
+      {
+        label: 'Production Infra',
+        detail: 'Railway (backend + 4 cron services: nightly ingest 2am ET, props refresh 4pm ET, settlement 8pm + 11pm ET) · Vercel (Next.js) · Supabase (Postgres + pgvector)',
+      },
+      {
+        label: 'Auth & Monetization',
+        detail: 'Clerk JWT (email / Google / Apple) · Stripe subscription ($15/mo) · server-side free-tier gating',
+      },
+    ],
+    stack: ['Python', 'FastAPI', 'LangChain', 'OpenAI Embeddings', 'Claude (Anthropic)', 'Supabase pgvector', 'PostgreSQL', 'Next.js', 'TypeScript', 'Framer Motion', 'Railway', 'Vercel', 'Clerk', 'Stripe'],
+    githubUrl: 'https://github.com/eyegetlucki/sharpiq',
+    liveUrl: 'https://sharpiq.online',
+    highlight: 'Context is retrieved, not hallucinated — every Claude output cites its source embeddings',
+    accentColor: '#10b981',
+  },
+  {
     id: 'foil-and-felony',
     title: 'Foil & Felony',
     status: 'in-progress',

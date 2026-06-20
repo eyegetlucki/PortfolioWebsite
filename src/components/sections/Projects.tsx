@@ -15,6 +15,8 @@ function GlitchLabel({ text }: { text: string }) {
 }
 
 export function Projects() {
+  const [featured, ...rest] = projects
+
   return (
     <section id="projects" className="py-28 px-6 md:px-12 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
@@ -24,13 +26,19 @@ export function Projects() {
             What I've <GradientText>Built</GradientText>
           </h2>
           <p className="text-base mb-14 max-w-xl" style={{ color: '#475569' }}>
-            Two projects — one shipped, one in progress. Both technically interesting.
+            Production systems — AI pipelines, multiplayer games, and interactive experiences. All built solo.
           </p>
         </AnimatedSection>
 
+        {/* Featured project — full width */}
+        <AnimatedSection delay={0.05} className="mb-6">
+          <ProjectCard project={featured} featured />
+        </AnimatedSection>
+
+        {/* Remaining projects — 2-col grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {projects.map((project, i) => (
-            <AnimatedSection key={project.id} delay={i * 0.1}>
+          {rest.map((project, i) => (
+            <AnimatedSection key={project.id} delay={0.1 + i * 0.1}>
               <ProjectCard project={project} />
             </AnimatedSection>
           ))}

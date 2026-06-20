@@ -1,9 +1,16 @@
+export interface ProjectSystem {
+  label: string
+  detail: string
+}
+
 export interface Project {
   id: string
   title: string
+  tagline?: string
   status: 'shipped' | 'in-progress'
   description: string
   longDescription: string
+  systems?: ProjectSystem[]
   stack: string[]
   githubUrl: string
   liveUrl?: string
