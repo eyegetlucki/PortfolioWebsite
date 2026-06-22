@@ -4,41 +4,41 @@ export const projects: Project[] = [
   {
     id: 'sharpiq',
     title: 'SharpIQ',
-    tagline: 'AI-powered NBA & MLB prop betting analysis platform',
+    tagline: 'AI-powered NBA, MLB & Soccer prop analysis — production RAG + LangGraph multi-agent system',
     status: 'shipped',
-    description: 'Production RAG pipeline for sports analytics — not a chatbot, not a wrapper.',
+    description: 'Production multi-agent RAG pipeline for sports analytics — not a chatbot, not a wrapper.',
     longDescription:
-      'Nightly ETL ingests NBA/MLB player data, enriches it with composite fatigue scores (rolling minutes, travel miles, timezone shift, rest days), matchup signals, park factors, and game-time weather, then embeds it as 1536-dim vectors into Supabase pgvector. At inference time, Claude reasons over semantically retrieved context and returns structured JSON with confidence scores and cited sources. Every output is grounded — nothing hallucinated.',
+      'Users input a player, prop type, and line. A 5-agent LangGraph pipeline (Research → Fatigue → Analyst → Critic → Synthesizer) retrieves semantic context from pgvector, computes 20+ enrichment signals, runs two Claude Sonnet calls, and returns a structured verdict with confidence score, sourced reasoning, and a Critic review flag when confidence drops below 60%. Every output is grounded — nothing hallucinated.',
     systems: [
       {
+        label: 'LangGraph Multi-Agent Pipeline',
+        detail: 'Typed AgentState TypedDict · 5 agents with conditional edges — Research → Fatigue → Analyst (Claude Sonnet) → Critic (Claude Sonnet) → Synthesizer · LangSmith tracing · confidence caps per sport (NBA 90%, MLB 92%, Soccer 70%)',
+      },
+      {
         label: 'RAG Pipeline',
-        detail: 'LangChain orchestration · OpenAI text-embedding-3-small (1536-dim) · Supabase pgvector semantic retrieval · Claude structured JSON output with cited sources',
+        detail: 'OpenAI text-embedding-3-small (1536-dim) · Supabase pgvector semantic retrieval · enriched prompt construction · structured Claude JSON output with cited sources',
       },
       {
-        label: 'Enrichment Layer',
-        detail: 'Composite fatigue score (rolling mins + travel miles + timezone shift + rest days) · Haversine travel distance · back-to-back detection · opponent defensive rating & pace · ballpark park factors · game-time wind via NWS · batter splits vs LHP/RHP',
+        label: 'Enrichment Layer (20+ signals)',
+        detail: 'Statcast barrel% / exit velocity · platoon splits · batter vs pitcher H2H · batting order · ballpark factors · WC venue altitude · fatigue score · Haversine travel miles · timezone shift · NWS + Open-Meteo weather · opponent defensive rating · shot quality (TS% / 3PAr)',
       },
       {
-        label: 'Multi-source Ingest',
-        detail: 'nba_api · statsapi (MLB) · The Odds API · ESPN public API · National Weather Service — nightly cron on Railway keeps embeddings fresh',
+        label: 'Data Pipeline',
+        detail: '5 Railway cron services — NBA (nba_api), MLB (statsapi + Baseball Savant Statcast), Soccer (ESPN + FBref, 11 leagues), odds (The Odds API), travel/weather · ET-normalized date handling for Railway UTC servers · auto-settlement cron by prop type prefix',
       },
       {
-        label: 'FastAPI Backend',
-        detail: 'Sport-aware /analyze endpoint · player search · props feed · prediction logging · auto-settlement cron · in-memory cache layer (1–12h TTLs)',
-      },
-      {
-        label: 'Production Infra',
-        detail: 'Railway (backend + 4 cron services: nightly ingest 2am ET, props refresh 4pm ET, settlement 8pm + 11pm ET) · Vercel (Next.js) · Supabase (Postgres + pgvector)',
+        label: 'AWS Production Infra',
+        detail: 'FastAPI Dockerized → ECR → ECS Fargate · Application Load Balancer · ACM SSL cert at api.sharpiq.online · IAM roles · CloudWatch logs · security groups · Namecheap DNS · Vercel (Next.js frontend) · Supabase (pgvector + PostgreSQL)',
       },
       {
         label: 'Auth & Monetization',
-        detail: 'Clerk JWT (email / Google / Apple) · Stripe subscription ($15/mo) · server-side free-tier gating',
+        detail: 'Clerk JWT with dynamic JWKS verification (email / Google / Apple) · Stripe $15/mo subscription with 7-day free trial · server-side free-tier gating',
       },
     ],
-    stack: ['Python', 'FastAPI', 'LangChain', 'OpenAI Embeddings', 'Claude (Anthropic)', 'Supabase pgvector', 'PostgreSQL', 'Next.js', 'TypeScript', 'Framer Motion', 'Railway', 'Vercel', 'Clerk', 'Stripe'],
+    stack: ['Python', 'FastAPI', 'LangGraph', 'LangSmith', 'Claude Sonnet', 'OpenAI Embeddings', 'pgvector', 'AWS ECS Fargate', 'Docker', 'Next.js', 'TypeScript', 'Framer Motion', 'Railway', 'Vercel', 'Supabase', 'Clerk', 'Stripe'],
     githubUrl: 'https://github.com/eyegetlucki/sharpiq',
     liveUrl: 'https://sharpiq.online',
-    highlight: 'Context is retrieved, not hallucinated — every Claude output cites its source embeddings',
+    highlight: '5-agent LangGraph pipeline — two Claude Sonnet calls, 20+ enrichment signals, Critic review flag below 60% confidence',
     accentColor: '#10b981',
   },
   {
@@ -74,11 +74,13 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: 'Claude API', icon: '🤖' },
       { name: 'RAG / Vector Search', icon: '🔍' },
+      { name: 'LangGraph', icon: '🕸️' },
       { name: 'LangChain', icon: '🔗' },
+      { name: 'LangSmith', icon: '🔭' },
       { name: 'OpenAI Embeddings', icon: '🧬' },
       { name: 'pgvector', icon: '🗄️' },
       { name: 'MCP Protocol', icon: '🔌' },
-      { name: 'Agentic Pipelines', icon: '⚙️' },
+      { name: 'Multi-Agent Systems', icon: '⚙️' },
       { name: 'LLM Integration', icon: '🧠' },
       { name: 'Prompt Engineering', icon: '📝' },
     ],
@@ -111,6 +113,9 @@ export const skillGroups: SkillGroup[] = [
   {
     category: 'Infra / Auth',
     skills: [
+      { name: 'AWS ECS Fargate', icon: '☁️' },
+      { name: 'Docker', icon: '🐳' },
+      { name: 'AWS ALB / ACM', icon: '🔒' },
       { name: 'Railway', icon: '🚂' },
       { name: 'Vercel', icon: '🚀' },
       { name: 'Cron / ETL Pipelines', icon: '⏱️' },
