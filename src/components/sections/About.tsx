@@ -4,7 +4,7 @@ import { AnimatedSection } from '../ui/AnimatedSection'
 import { GradientText } from '../ui/GradientText'
 
 const stats = [
-  { value: '3', numeric: 3, label: 'Projects Shipped to Production' },
+  { value: '4', numeric: 4, label: 'Projects Shipped or In Progress' },
   { value: '28', numeric: 28, label: 'Live UE5 Editor Tools via MCP' },
   { value: 'Solo', numeric: null, label: 'End-to-End Builds' },
   { value: 'Remote', numeric: null, label: 'Fairfax, VA' },

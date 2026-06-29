@@ -42,6 +42,19 @@ export const projects: Project[] = [
     accentColor: '#10b981',
   },
   {
+    id: 'codrifter',
+    title: 'CoDrifter',
+    tagline: 'AI voice co-driver for Assetto Corsa — real-time ML + sub-300ms voice callouts',
+    status: 'shipped',
+    description: 'Real-time AI co-driver that reads live telemetry, classifies driving mistakes at 60hz, and calls them out by voice before you\'ve consciously registered the error.',
+    longDescription:
+      'XGBoost classifier runs on a 30-frame rolling window of 20 engineered features — yaw rate, wheel slip delta, throttle/steering correlation — and fires ElevenLabs voice callouts in under 300ms end-to-end. The model self-improves per session via offline retraining. Corner entry detection learns your personal speed baseline after 3 passes and adapts thresholds to you, not a hardcoded number. After each session, Claude Sonnet reads a structured telemetry digest and generates a full debrief: best/worst sectors, most frequent mistakes, consistency score, and top 3 improvements.',
+    stack: ['Python', 'XGBoost', 'ElevenLabs', 'Claude Sonnet', 'PyQt6', 'PyInstaller', 'Inno Setup', 'Windows Shared Memory'],
+    githubUrl: 'https://github.com/eyegetlucki/CoDrifter',
+    highlight: 'Mistake detected → voice callout in < 300ms — XGBoost at 60hz, fully threaded, main loop never blocks',
+    accentColor: '#f97316',
+  },
+  {
     id: 'foil-and-felony',
     title: 'Foil & Felony',
     status: 'in-progress',
@@ -82,6 +95,7 @@ export const skillGroups: SkillGroup[] = [
       { name: 'MCP Protocol', icon: '🔌' },
       { name: 'Multi-Agent Systems', icon: '⚙️' },
       { name: 'LLM Integration', icon: '🧠' },
+      { name: 'XGBoost', icon: '📊' },
       { name: 'Prompt Engineering', icon: '📝' },
     ],
   },
