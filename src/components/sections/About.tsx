@@ -64,7 +64,7 @@ export function About() {
               That's how I got into software. Self-taught, no bootcamp, just picking something I wanted to build and grinding until I understood it. Right now that's AI systems — I built SharpIQ because I wanted to know why a player was actually tired, so I made a pipeline that tracks their flight miles, timezone shifts, and rest days, feeds it into a vector database, and lets Claude reason over it. Every answer cites its sources. Nothing made up.
             </p>
             <p>
-              I also wired Claude directly into the Unreal Engine 5 editor through a custom MCP bridge — 28 live tools that let an LLM read and write game world state in real time. It probably shouldn't work. It does.
+              I also wired Claude into the Unreal Engine 5 editor using Anthropic's MCP with 28 extra tools — Claude reads and writes live game world state directly in the editor. It probably shouldn't work. It does.
             </p>
           </div>
         </AnimatedSection>

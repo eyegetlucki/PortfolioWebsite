@@ -60,10 +60,10 @@ export const projects: Project[] = [
     status: 'in-progress',
     description: 'Cooperative first-person card shop simulator built in UE5.7.4 + C++.',
     longDescription:
-      'Features an MCP/Claude Code bridge connecting a live LLM agent to the UE5 editor via localhost HTTP — 28 real-time editor tools, custom NPC behavior system driving 5 hidden personality values across 9 behavior states, multi-variable probabilistic detection model, dynamic card economy, weighted random pack generation, and a host-based listen server with Steam API.',
+      'Uses Anthropic\'s MCP with 28 extra tools to connect Claude directly to the UE5 editor — reads and writes live game world state in real time. Custom NPC behavior system driving 5 hidden personality values across 9 behavior states, multi-variable probabilistic detection model, dynamic card economy, weighted random pack generation, and a host-based listen server with Steam API.',
     stack: ['Unreal Engine 5.7', 'C++', 'Claude MCP', 'Steam API', 'LLM Integration', 'Blueprint'],
     githubUrl: 'https://github.com/eyegetlucki/FoilAndFelony',
-    highlight: 'LLM agent controls the UE5 editor live via 28 custom MCP tools',
+    highlight: 'Claude controls the UE5 editor live via Anthropic MCP + 28 extra tools — reads and writes game world state in real time',
     accentColor: '#8b5cf6',
   },
   {
