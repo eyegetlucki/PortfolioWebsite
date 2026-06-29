@@ -67,7 +67,7 @@ export function Hero() {
             className="text-xs font-semibold uppercase tracking-widest mb-6"
             style={{ color: '#475569' }}
           >
-            AI Developer · Game Builder · Fairfax, VA (Remote)
+            AI/ML Engineer · Game Builder · Fairfax, VA (Remote)
           </motion.p>
 
           {/* Name */}
@@ -87,9 +87,9 @@ export function Hero() {
             className="text-lg md:text-2xl font-medium leading-relaxed mb-10 max-w-2xl"
             style={{ color: '#94a3b8' }}
           >
-            AI-Native Developer · LLM Integration · RAG & Agentic Pipelines
+            AI/ML Engineer · RAG Pipelines · Multi-Agent Systems
             <br />
-            <span style={{ color: '#475569' }}>Unreal Engine 5 · Full-Stack</span>
+            <span style={{ color: '#475569' }}>Real-time ML · Unreal Engine 5 · Full-Stack</span>
           </motion.h2>
 
           {/* CTAs with magnetic effect */}
