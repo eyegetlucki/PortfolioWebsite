@@ -42,6 +42,42 @@ export const projects: Project[] = [
     accentColor: '#10b981',
   },
   {
+    id: 'verdikt',
+    title: 'Verdikt',
+    tagline: 'AI-powered ATS resume scorer — instant match score, keyword gap analysis, and Claude-rewritten bullets',
+    status: 'shipped',
+    description: 'Paste a resume and job description — get an ATS score, keyword gap analysis, ranked suggestions, and AI-rewritten bullets in seconds.',
+    longDescription:
+      'Claude scores resumes 0–100 across keyword match, impact quality, relevance, and formatting. Pro tier adds seniority mismatch detection, red flag analysis (gaps, weak verbs, job hopping), projected score simulation, and one-click PDF generation of the improved resume. Full monorepo: Next.js 15 web app, Expo React Native iOS app, and FastAPI backend — all sharing a design token package.',
+    systems: [
+      {
+        label: 'Claude Scoring Engine',
+        detail: 'claude-sonnet-4-6 — ATS score (0–100) weighted across keyword match, impact quality, relevance & formatting · bullet rewrites with stronger verbs and measurable outcomes · seniority language analysis · red flag detection · projected score simulation',
+      },
+      {
+        label: 'Monorepo Structure',
+        detail: 'apps/web (Next.js 15) · apps/mobile (Expo React Native + Expo Router) · backend (FastAPI) · packages/tokens (shared design tokens for web + iOS)',
+      },
+      {
+        label: 'FastAPI Backend',
+        detail: 'Async Python · /score, /history, /parse-resume, /generate-resume (Claude Vision, Pro), /billing · Pydantic request/response models · Supabase RLS (plan changes via service role only)',
+      },
+      {
+        label: 'AWS Production Infra',
+        detail: 'Docker → ECR → ECS Fargate · ALB + ACM SSL + Route 53 DNS · Vercel (Next.js) · force-redeploy via AWS CLI on push',
+      },
+      {
+        label: 'Auth & Monetization',
+        detail: 'Clerk JWT + JWKS (email / Google OAuth) on web and iOS native dev build · Stripe $9/mo with checkout session, billing portal, and webhook handler · usage-gated scans (5 free / 200 Pro per month)',
+      },
+    ],
+    stack: ['Python', 'FastAPI', 'Claude (Anthropic)', 'Next.js 15', 'Expo', 'React Native', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Docker', 'AWS ECS Fargate', 'AWS Route 53', 'Clerk', 'Stripe', 'Vercel'],
+    githubUrl: 'https://github.com/eyegetlucki/verdikt-public',
+    liveUrl: 'https://verdikt.cc',
+    highlight: 'Claude scores, rewrites, and regenerates your resume as a clean PDF — web + iOS from a single monorepo',
+    accentColor: '#6366f1',
+  },
+  {
     id: 'codrifter',
     title: 'CoDrifter',
     tagline: 'AI voice co-driver for Assetto Corsa — real-time ML + sub-300ms voice callouts',
@@ -118,6 +154,8 @@ export const skillGroups: SkillGroup[] = [
       { name: 'Next.js', icon: '▲' },
       { name: 'TypeScript', icon: '🔷' },
       { name: 'Node.js', icon: '🟩' },
+      { name: 'React Native', icon: '📱' },
+      { name: 'Expo', icon: '🧪' },
       { name: 'Framer Motion', icon: '🎞️' },
       { name: 'Socket.io', icon: '🔌' },
       { name: 'PostgreSQL', icon: '🐘' },
@@ -130,6 +168,7 @@ export const skillGroups: SkillGroup[] = [
       { name: 'AWS ECS Fargate', icon: '☁️' },
       { name: 'Docker', icon: '🐳' },
       { name: 'AWS ALB / ACM', icon: '🔒' },
+      { name: 'AWS Route 53', icon: '🌍' },
       { name: 'Railway', icon: '🚂' },
       { name: 'Vercel', icon: '🚀' },
       { name: 'Cron / ETL Pipelines', icon: '⏱️' },
